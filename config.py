@@ -1,5 +1,5 @@
 
-SERVER = r"localhost\SQLEXPRESS"
+SERVER = r"localhost\SQLEXPRESS" #we have to change the server name!!!!!
 
 SOURCE_DB = "SourceDB"
 TARGET_DB = "TargetDB"
