@@ -1,0 +1,65 @@
+step:1
+======================
+USE SourceDB;
+GO
+
+CREATE TABLE dbo.Employees
+(
+    EmployeeID INT PRIMARY KEY,
+    EmployeeName VARCHAR(100),
+    Department VARCHAR(50),
+    Salary DECIMAL(10,2),
+    ModifiedDate DATETIME2(7) NOT NULL
+);
+
+
+
+INSERT INTO dbo.Employees
+(EmployeeID, EmployeeName, Department, Salary, ModifiedDate)
+VALUES
+(101, 'Ravi', 'IT', 25000, GETDATE()),
+(102, 'Kumar', 'HR', 30000, GETDATE()),
+(103, 'Ramesh', 'Finance', 35000, GETDATE()),
+(104, 'Suresh', 'IT', 40000, GETDATE()),
+(105, 'Mahesh', 'Testing', 45000, GETDATE());
+
+
+step:2
+===============
+
+USE TargetDB;
+GO
+
+CREATE TABLE dbo.Employees
+(
+    EmployeeID INT PRIMARY KEY,
+    EmployeeName VARCHAR(100),
+    Department VARCHAR(50),
+    Salary DECIMAL(10,2),
+    ModifiedDate DATETIME2(7)
+);
+GO
+
+
+step:3
+=================
+USE TargetDB;
+GO
+
+CREATE TABLE dbo.ETL_Watermark
+(
+    PipelineName VARCHAR(100) PRIMARY KEY,
+    LastModifiedDate DATETIME2(7)
+);
+GO
+
+INSERT INTO dbo.ETL_Watermark
+(
+    PipelineName,
+    LastModifiedDate
+)
+VALUES
+(
+    'Employee_ETL',
+    '1900-01-01'
+);
